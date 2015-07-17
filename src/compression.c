@@ -30,14 +30,7 @@ int CompressBuffer(unsigned char **dest, const unsigned char *src, unsigned int 
 		return 0;
 	}
 
-	bts = dlen - stream.avail_out;
 	ret = stream.total_out;
-
-	if (memcpy_s(*dest, dlen, *dest, bts) != 0) {
-		HeapFree(GetProcessHeap(), 0, *dest);
-		*dest = NULL;
-		ret = 0;
-	}
 
 	deflateEnd(&stream);
 
